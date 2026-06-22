@@ -134,6 +134,24 @@ table.ke-t tfoot td:first-child{text-align:left;}
 .legend-tr .pct{margin-left:auto;color:var(--ke-text);}
 @media(max-width:900px){.ke-grid-5{grid-template-columns:repeat(2,1fr);}.ke-2col{grid-template-columns:1fr;}.adgrid-m{grid-template-columns:repeat(2,1fr);}.adcard{flex-direction:column;}}
 .srclogo{height:20px;width:auto;margin-left:12px;vertical-align:middle;opacity:.85;}
+
+@media(max-width:560px){
+  .ke-wrap{padding:14px;}
+  .ke-nav{padding:6px 14px;}
+  .ke-nav-logo{padding-right:12px;margin-right:6px;}
+  .ke-nav-tab{padding:10px 7px;font-size:9px;letter-spacing:.07em;}
+  .ke-nav-date{display:none;}
+  .ke-pg-header{gap:10px;padding-bottom:16px;margin-bottom:18px;}
+  .ke-pg-title{font-size:32px;}
+  .ke-kc{padding:13px 12px;}
+  .ke-kl{letter-spacing:1.2px;}
+  .ke-kv{font-size:clamp(16px,5.4vw,26px);white-space:nowrap;}
+  .ke-grid-4,.ke-grid-3,.ke-grid-5{gap:10px;}
+  .srclogo{height:16px;margin-left:8px;}
+  .donut-wrap{width:185px !important;height:185px !important;}
+  .thumb-lg{width:84px;height:84px;}
+  .adm .v{font-size:14px;}
+}
 </style>
 </head>
 <body>
@@ -247,9 +265,13 @@ Chart.defaults.color=MUT;
 if(window.ChartDataLabels){Chart.register(window.ChartDataLabels);Chart.defaults.set('plugins.datalabels',{display:false});}
 const MES=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
 const charts={};
+let _last=null;
 const nf=new Intl.NumberFormat('es-AR');
 function iso(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
 function money(v){return '$ '+nf.format(Math.round(v||0));}
+function moneyC(v){v=v||0;const a=Math.abs(v);if(a>=1e6)return '$ '+(v/1e6).toFixed(1).replace('.',',')+'M';if(a>=1e3)return '$ '+(v/1e3).toFixed(1).replace('.',',')+'k';return '$ '+nf.format(Math.round(v));}
+function isMobile(){return window.matchMedia('(max-width:560px)').matches;}
+function moneyKpi(v){return isMobile()?moneyC(v):money(v);}
 function pct(v){return (v||0).toFixed(1).replace('.',',')+'%';}
 function fmtInt(v){return nf.format(Math.round(v||0));}
 function sum(a,f){return a.reduce((s,x)=>s+(parseFloat(f(x))||0),0);}
@@ -317,20 +339,21 @@ async function loadData(){
   finally{_busy=false;}
 }
 function render(c,p,D){
-  setTxt('kv-fact',money(c.facturacion)); setHTML('ks-fact',deltaHTML(c.facturacion,p.facturacion,false));
-  setTxt('kv-ticket',money(c.ticket)); setHTML('ks-ticket',deltaHTML(c.ticket,p.ticket,false));
+  _last={c,p,D};
+  setTxt('kv-fact',moneyKpi(c.facturacion)); setHTML('ks-fact',deltaHTML(c.facturacion,p.facturacion,false));
+  setTxt('kv-ticket',moneyKpi(c.ticket)); setHTML('ks-ticket',deltaHTML(c.ticket,p.ticket,false));
   setTxt('kv-conv',pct(c.conv)); setHTML('ks-conv',deltaHTML(c.conv,p.conv,false));
   setTxt('kv-ord',fmtInt(c.ordenes)); setHTML('ks-ord',deltaHTML(c.ordenes,p.ordenes,false));
-  setTxt('kv-mspend',money(c.mS)); setHTML('ks-mspend',deltaHTML(c.mS,p.mS,false));
-  setTxt('kv-mcosto',money(c.mCosto)); setHTML('ks-mcosto',deltaHTML(c.mCosto,p.mCosto,true));
-  setTxt('kv-mfact',money(c.mFact)); setHTML('ks-mfact',deltaHTML(c.mFact,p.mFact,false));
+  setTxt('kv-mspend',moneyKpi(c.mS)); setHTML('ks-mspend',deltaHTML(c.mS,p.mS,false));
+  setTxt('kv-mcosto',moneyKpi(c.mCosto)); setHTML('ks-mcosto',deltaHTML(c.mCosto,p.mCosto,true));
+  setTxt('kv-mfact',moneyKpi(c.mFact)); setHTML('ks-mfact',deltaHTML(c.mFact,p.mFact,false));
   setTxt('kv-macos',pct(c.mAcos)); setHTML('ks-macos',deltaHTML(c.mAcos,p.mAcos,true));
-  setTxt('kv-mcpm',money(c.mCpm)); setHTML('ks-mcpm',deltaHTML(c.mCpm,p.mCpm,true));
-  setTxt('kv-gcost',money(c.gC)); setHTML('ks-gcost',deltaHTML(c.gC,p.gC,false));
-  setTxt('kv-gcosto',money(c.gCosto)); setHTML('ks-gcosto',deltaHTML(c.gCosto,p.gCosto,true));
-  setTxt('kv-gfact',money(c.gFact)); setHTML('ks-gfact',deltaHTML(c.gFact,p.gFact,false));
+  setTxt('kv-mcpm',moneyKpi(c.mCpm)); setHTML('ks-mcpm',deltaHTML(c.mCpm,p.mCpm,true));
+  setTxt('kv-gcost',moneyKpi(c.gC)); setHTML('ks-gcost',deltaHTML(c.gC,p.gC,false));
+  setTxt('kv-gcosto',moneyKpi(c.gCosto)); setHTML('ks-gcosto',deltaHTML(c.gCosto,p.gCosto,true));
+  setTxt('kv-gfact',moneyKpi(c.gFact)); setHTML('ks-gfact',deltaHTML(c.gFact,p.gFact,false));
   setTxt('kv-gacos',pct(c.gAcos)); setHTML('ks-gacos',deltaHTML(c.gAcos,p.gAcos,true));
-  setTxt('kv-gcpc',money(c.gCpc)); setHTML('ks-gcpc',deltaHTML(c.gCpc,p.gCpc,true));
+  setTxt('kv-gcpc',moneyKpi(c.gCpc)); setHTML('ks-gcpc',deltaHTML(c.gCpc,p.gCpc,true));
   setTxt('stat-ov',pct(c.acosGeneral));
 
   const N=Math.round((state.to-state.from)/86400000)+1;
@@ -367,8 +390,8 @@ function render(c,p,D){
     const img=a.img?'<img class="thumb-lg" src="'+a.img+'" loading="lazy" onerror="this.style.visibility=&#39;hidden&#39;">':'<div class="thumb-lg"></div>';
     const copy=a.copy?('<div class="copy">'+a.copy.replace(/</g,'&lt;')+'</div>'):'';
     return '<div class="adcard">'+img+'<div style="flex:1;min-width:0;">'+copy+'<div class="adgrid-m">'+
-      cell('Impresiones',fmtInt(a.impr))+cell('CPM',money(cpm))+cell('CTR',pct(ctr))+cell('Visitas',fmtInt(a.lpv))+cell('Costo/visita',money(cpv))+
-      cell('Compras',fmtInt(a.pur))+cell('Valor compras',money(a.val))+cell('ACOS',pct(acos))+cell('Hook rate',pct(hook))+cell('Hold 100%',pct(hold))+
+      cell('Impresiones',fmtInt(a.impr))+cell('CPM',moneyKpi(cpm))+cell('CTR',pct(ctr))+cell('Visitas',fmtInt(a.lpv))+cell('Costo/visita',moneyKpi(cpv))+
+      cell('Compras',fmtInt(a.pur))+cell('Valor compras',moneyKpi(a.val))+cell('ACOS',pct(acos))+cell('Hook rate',pct(hook))+cell('Hold 100%',pct(hold))+
       '</div></div></div>';
   }).join('')||'<div class="ke-pg-sub">Sin anuncios en el período.</div>';
 }
@@ -440,6 +463,8 @@ async function exportPDF(){
 }
 labelRange();
 loadData();
+let _mob=isMobile();
+window.addEventListener('resize',()=>{const m=isMobile();if(m!==_mob){_mob=m;if(_last)render(_last.c,_last.p,_last.D);}});
 
 </script>
 </body>
