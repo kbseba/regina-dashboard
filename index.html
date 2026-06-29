@@ -160,7 +160,7 @@ table.ke-t tfoot td:first-child{text-align:left;}
 .em-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--ke-orange);}
 .em-top{display:flex;align-items:center;gap:10px;}
 .em-name{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ke-muted);}
-.em-val{font-family:'Bitroad',sans-serif;font-size:30px;color:var(--ke-text);line-height:1;margin:10px 0 2px;}
+.em-val{font-family:'General Sans',sans-serif;font-weight:600;font-size:30px;color:var(--ke-text);line-height:1;margin:10px 0 2px;}
 .em-badge{font-size:10px;font-weight:700;padding:2px 8px;border-radius:999px;margin-left:auto;}
 .em-badge.up{color:var(--ke-green);background:rgba(77,204,128,.1);}
 .em-badge.down{color:var(--ke-bad);background:rgba(224,90,58,.12);}
@@ -306,7 +306,7 @@ table.ke-t tfoot td:first-child{text-align:left;}
     <div class="em-card"><div class="em-top"><span class="em-name">Envíos</span><span id="em-envios-b" class="em-badge na">—</span></div><div id="em-envios" class="em-val">—</div><div id="em-envios-sub" class="em-sub"></div></div>
     <div class="em-card"><div class="em-top"><span class="em-name">Aperturas</span><span id="em-aper-b" class="em-badge na">—</span></div><div id="em-aper" class="em-val">—</div><div id="em-aper-sub" class="em-sub"></div></div>
     <div class="em-card"><div class="em-top"><span class="em-name">Clicks</span><span id="em-clicks-b" class="em-badge na">—</span></div><div id="em-clicks" class="em-val">—</div><div id="em-clicks-sub" class="em-sub"></div></div>
-    <div class="em-card"><div class="em-top"><span class="em-name">Click-to-open</span><span id="em-ctor-b" class="em-badge na">—</span></div><div id="em-ctor" class="em-val">—</div><div id="em-ctor-sub" class="em-sub"></div></div>
+    <div class="em-card"><div class="em-top"><span class="em-name">Click rate</span><span id="em-ctor-b" class="em-badge na">—</span></div><div id="em-ctor" class="em-val">—</div><div id="em-ctor-sub" class="em-sub"></div></div>
     <div class="em-card"><div class="em-top"><span class="em-name">Rebotes</span><span id="em-reb-b" class="em-badge na">—</span></div><div id="em-reb" class="em-val">—</div><div id="em-reb-sub" class="em-sub"></div></div>
     <div class="em-card"><div class="em-top"><span class="em-name">Desuscripciones</span><span id="em-des-b" class="em-badge na">—</span></div><div id="em-des" class="em-val">—</div><div id="em-des-sub" class="em-sub"></div></div>
   </div>
@@ -586,8 +586,8 @@ function renderEmail(cur,prev){
   setTxt('stat-email',pctN(a.or,0));
   setTxt('em-envios',fmtInt(a.sent)); setHTML('em-envios-b',emBadge(a.sent,p.sent,false)); setTxt('em-envios-sub',pctN(a.dr,1)+' de los emails enviados fueron entregados con éxito.');
   setTxt('em-aper',pctN(a.or,1)); setHTML('em-aper-b',emBadge(a.or,p.or,false)); setTxt('em-aper-sub',fmtInt(a.op)+' aperturas únicas sobre '+fmtInt(a.deliv)+' entregados.');
-  setTxt('em-clicks',pctN(a.cr,1)); setHTML('em-clicks-b',emBadge(a.cr,p.cr,false)); setTxt('em-clicks-sub',fmtInt(a.cl)+' clics únicos · '+pctN(a.ctor,1)+' de quienes abrieron (CTOR).');
-  setTxt('em-ctor',pctN(a.ctor,1)); setHTML('em-ctor-b',emBadge(a.ctor,p.ctor,false)); setTxt('em-ctor-sub','Clics únicos sobre aperturas únicas.');
+  setTxt('em-clicks',pctN(a.ctor,1)); setHTML('em-clicks-b',emBadge(a.ctor,p.ctor,false)); setTxt('em-clicks-sub',fmtInt(a.cl)+' de los abiertos recibieron al menos un click · '+pctN(a.cr,1)+' de los entregados.');
+  setTxt('em-ctor',pctN(a.cr,1)); setHTML('em-ctor-b',emBadge(a.cr,p.cr,false)); setTxt('em-ctor-sub',fmtInt(a.cl)+' clics únicos sobre '+fmtInt(a.deliv)+' entregados.');
   setTxt('em-reb',pctN(a.br,2)); setHTML('em-reb-b',emBadge(a.br,p.br,true)); setTxt('em-reb-sub',fmtInt(a.bo)+' emails rechazados por el servidor.');
   setTxt('em-des',pctN(a.ur,2)); setHTML('em-des-b',emBadge(a.ur,p.ur,true)); setTxt('em-des-sub',fmtInt(a.un)+' destinatarios se desuscribieron.');
   const tb=document.getElementById('em-tbody');
