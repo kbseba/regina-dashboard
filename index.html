@@ -154,6 +154,48 @@ table.ke-t tfoot td:first-child{text-align:left;}
   .thumb-lg{width:84px;height:84px;}
   .adm .v{font-size:14px;}
 }
+/* EMAIL MARKETING (estilo Perfit) */
+.em-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:8px;}
+.em-card{background:var(--ke-card);border:1px solid var(--ke-border);border-radius:12px;padding:18px 20px;position:relative;overflow:hidden;}
+.em-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--ke-orange);}
+.em-top{display:flex;align-items:center;gap:10px;}
+.em-name{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ke-muted);}
+.em-val{font-family:'Bitroad',sans-serif;font-size:30px;color:var(--ke-text);line-height:1;margin:10px 0 2px;}
+.em-badge{font-size:10px;font-weight:700;padding:2px 8px;border-radius:999px;margin-left:auto;}
+.em-badge.up{color:var(--ke-green);background:rgba(77,204,128,.1);}
+.em-badge.down{color:var(--ke-bad);background:rgba(224,90,58,.12);}
+.em-badge.na{color:var(--ke-muted);background:rgba(255,255,255,.05);}
+.em-sub{font-size:11px;color:rgba(230,230,230,.6);line-height:1.5;margin-top:6px;}
+.em-toggle{display:flex;gap:6px;flex-wrap:wrap;}
+.em-tg{font-family:'General Sans',sans-serif;font-size:11px;font-weight:600;color:var(--ke-muted);background:transparent;border:1px solid var(--ke-border);border-radius:999px;padding:5px 12px;cursor:pointer;transition:all .15s;}
+.em-tg:hover{color:var(--ke-text);border-color:rgba(255,112,10,.4);}
+.em-tg.active{color:#191919;background:var(--ke-orange);border-color:var(--ke-orange);font-weight:700;}
+@media(max-width:900px){.em-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:560px){.em-grid{grid-template-columns:1fr;}}
+/* OBJETIVOS DEL MES */
+.ke-goals{display:grid;grid-template-columns:1fr 1fr;gap:16px 24px;margin:4px 0 8px;}
+.ke-goal-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:7px;}
+.ke-goal-name{font-size:11px;font-weight:600;letter-spacing:.04em;color:var(--ke-text);}
+.ke-goal-pct{font-family:'Bitroad',sans-serif;font-size:17px;color:var(--ke-orange);line-height:1;}
+.ke-goal-pct.g{color:var(--ke-green);}.ke-goal-pct.o{color:var(--ke-warn);}.ke-goal-pct.b{color:var(--ke-blue);}
+.ke-goal-bar{position:relative;height:10px;background:rgba(255,255,255,.06);border-radius:6px;}
+.ke-goal-fill{position:absolute;top:0;left:0;bottom:0;background:var(--ke-orange);border-radius:6px;max-width:100%;}
+.ke-goal-fill.g{background:var(--ke-green);}.ke-goal-fill.o{background:var(--ke-warn);}.ke-goal-fill.b{background:var(--ke-blue);}
+.ke-goal-ideal{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--ke-text);opacity:.6;border-radius:2px;}
+.ke-goal-sub{font-size:10px;color:var(--ke-muted);margin-top:7px;letter-spacing:.02em;}
+.ke-goal-mes{font-size:9px;color:var(--ke-muted);letter-spacing:.1em;text-transform:uppercase;margin-left:auto;}
+.ke-goal-mes b{color:var(--ke-text);}
+/* CONCLUSIONES & ACCIONABLES */
+.ke-ins-wrap{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:8px;}
+.ke-ins-card{background:var(--ke-card);border:1px solid var(--ke-border);border-radius:12px;padding:16px 18px;}
+.ke-ins-card.cur{border-color:rgba(255,112,10,.3);}
+.ke-ins-wk{font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--ke-muted);margin-bottom:6px;}
+.ke-ins-wk b{color:var(--ke-orange);}
+.ke-ins-field{margin-top:12px;}
+.ke-ins-field .l{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--ke-muted);margin-bottom:4px;}
+.ke-ins-field .v{font-size:13px;color:var(--ke-text);line-height:1.55;white-space:pre-wrap;}
+.ke-ins-resp{font-size:10px;color:var(--ke-muted);margin-top:12px;letter-spacing:.04em;}
+@media(max-width:560px){.ke-goals{grid-template-columns:1fr;}.ke-ins-wrap{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
@@ -163,8 +205,8 @@ table.ke-t tfoot td:first-child{text-align:left;}
     <img src="data:image/png;base64,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" alt="Krab-e">
     <div class="lbl">Krab<span>-e</span><small>Regina Cosmetics</small></div>
   </div>
-    <div class="ke-nav-tab active" onclick="goTo('p1',this)">Overview</div>
-  <div class="ke-nav-tab" onclick="goTo('p2',this)">Anuncios creativos</div>
+    <div class="ke-nav-tab active" onclick="goTo('p1',this)">Paid Media</div>
+  <div class="ke-nav-tab" onclick="goTo('p2',this)">Email Marketing</div>
   <div class="ke-nav-date">Período <b id="navPeriod">01 — 18 jun 2026</b></div>
 </nav>
 
@@ -185,7 +227,7 @@ table.ke-t tfoot td:first-child{text-align:left;}
   <div class="ke-pg-header">
     <div>
       <div class="ke-eyebrow">Performance general · mes en curso</div>
-      <div class="ke-pg-title">OVER<span>VIEW</span></div>
+      <div class="ke-pg-title">PAID <span>MEDIA</span></div>
       <div class="ke-pg-sub">Regina Cosmetics · <span class="dateauto"></span> · comparado vs. mismo período del mes anterior</div>
     </div>
     <div class="ke-pg-stat"><div id="stat-ov" class="ke-pg-stat-val">—</div><div class="ke-pg-stat-lbl">ACOS general</div></div>
@@ -238,21 +280,69 @@ table.ke-t tfoot td:first-child{text-align:left;}
       <div class="ke-bbody"><div class="ke-chartbox"><canvas id="cUsersDia"></canvas></div></div>
     </div>
   </div>
+
+  <div class="ke-sec-head"><div class="ke-sec-line"></div><span class="ke-sec-label">Objetivos del mes · avance vs meta</span><span id="goal-mes" class="ke-goal-mes"></span></div>
+  <div id="goals" class="ke-goals"><div class="ke-pg-sub">Cargando objetivos…</div></div>
+
+  <div class="ke-sec-head"><div class="ke-sec-line"></div><span class="ke-sec-label">Top creativos · Meta Ads</span><span class="ke-goal-mes">Ranking por valor de compras · hook prom. <b id="stat-hook">—</b></span></div>
+  <div id="adcards"></div>
+
+  <div class="ke-sec-head"><div class="ke-sec-line"></div><span class="ke-sec-label">Conclusiones &amp; accionables · Paid Media</span></div>
+  <div id="insights-pm" class="ke-ins-wrap"><div class="ke-pg-sub">Cargando…</div></div>
 </section>
 
 <section id="p2" class="ke-page">
   <div class="ke-pg-header">
     <div>
-      <div class="ke-eyebrow">Meta Ads · creatividad y rentabilidad</div>
-      <div class="ke-pg-title">ANUNCIOS <span>CREATIVOS</span></div>
-      <div class="ke-pg-sub">Ranking por valor de compras · copy + métricas + hook/hold · <span class="dateauto"></span></div>
+      <div class="ke-eyebrow">Email Marketing · Perfit</div>
+      <div class="ke-pg-title">EMAIL <span>MARKETING</span></div>
+      <div class="ke-pg-sub">Métricas principales de tus envíos · <span class="dateauto"></span> · comparado vs. período anterior</div>
     </div>
-    <div class="ke-pg-stat"><div id="stat-hook" class="ke-pg-stat-val">—</div><div class="ke-pg-stat-lbl">Hook rate prom.</div></div>
+    <div class="ke-pg-stat"><div id="stat-email" class="ke-pg-stat-val">—</div><div class="ke-pg-stat-lbl">Open rate prom.</div></div>
   </div>
-  <div id="adcards"></div>
+
+  <div class="ke-sec-head"><div class="ke-sec-line"></div><span class="ke-sec-label">Métricas principales de tus emails</span></div>
+  <div class="em-grid">
+    <div class="em-card"><div class="em-top"><span class="em-name">Envíos</span><span id="em-envios-b" class="em-badge na">—</span></div><div id="em-envios" class="em-val">—</div><div id="em-envios-sub" class="em-sub"></div></div>
+    <div class="em-card"><div class="em-top"><span class="em-name">Aperturas</span><span id="em-aper-b" class="em-badge na">—</span></div><div id="em-aper" class="em-val">—</div><div id="em-aper-sub" class="em-sub"></div></div>
+    <div class="em-card"><div class="em-top"><span class="em-name">Clicks</span><span id="em-clicks-b" class="em-badge na">—</span></div><div id="em-clicks" class="em-val">—</div><div id="em-clicks-sub" class="em-sub"></div></div>
+    <div class="em-card"><div class="em-top"><span class="em-name">Click-to-open</span><span id="em-ctor-b" class="em-badge na">—</span></div><div id="em-ctor" class="em-val">—</div><div id="em-ctor-sub" class="em-sub"></div></div>
+    <div class="em-card"><div class="em-top"><span class="em-name">Rebotes</span><span id="em-reb-b" class="em-badge na">—</span></div><div id="em-reb" class="em-val">—</div><div id="em-reb-sub" class="em-sub"></div></div>
+    <div class="em-card"><div class="em-top"><span class="em-name">Desuscripciones</span><span id="em-des-b" class="em-badge na">—</span></div><div id="em-des" class="em-val">—</div><div id="em-des-sub" class="em-sub"></div></div>
+  </div>
+
+  <div class="ke-block"><div class="ke-block-top"></div>
+    <div class="ke-bh" style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+      <span class="ke-bt">Evolución por envío</span>
+      <div class="em-toggle" style="margin-left:auto;">
+        <button class="em-tg em-tg-s active" onclick="emSetSeries('envios',this)">Envíos</button>
+        <button class="em-tg em-tg-s" onclick="emSetSeries('aperturas',this)">Aperturas</button>
+        <button class="em-tg em-tg-s" onclick="emSetSeries('clicks',this)">Clicks</button>
+      </div>
+      <div class="em-toggle">
+        <button class="em-tg em-tg-u active" onclick="emSetUnit('#',this)">#</button>
+        <button class="em-tg em-tg-u" onclick="emSetUnit('%',this)">%</button>
+      </div>
+    </div>
+    <div class="ke-bbody"><div class="ke-chartbox"><canvas id="cEmail"></canvas></div></div>
+  </div>
+
+  <div class="ke-sec-head"><div class="ke-sec-line"></div><span class="ke-sec-label">Detalle por envío</span></div>
+  <div class="ke-block"><div class="ke-block-top"></div>
+    <table class="ke-t">
+      <thead><tr><th>Envío</th><th>Enviados</th><th>Entregados</th><th class="acc">Open rate</th><th>Click rate</th><th>CTOR</th><th>Rebote</th><th>Desuscr.</th></tr></thead>
+      <tbody id="em-tbody"><tr><td>Cargando…</td></tr></tbody>
+      <tfoot id="em-tfoot"></tfoot>
+    </table>
+  </div>
+
+  <div class="ke-sec-head"><div class="ke-sec-line"></div><span class="ke-sec-label">Conclusiones &amp; accionables · Email Marketing</span></div>
+  <div id="insights-em" class="ke-ins-wrap"><div class="ke-pg-sub">Cargando…</div></div>
 </section>
 
 </div>
+
+<div class="ke-footer"><span>Krab-e · Regina Cosmetics</span><span>Datos: Detrics → Supabase · Perfit (Email) · actualización diaria 08:00</span></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.2.0/chartjs-plugin-datalabels.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -414,6 +504,7 @@ function goTo(id,el){
   document.querySelectorAll('.ke-page').forEach(s=>s.classList.remove('active'));
   document.querySelectorAll('.ke-nav-tab').forEach(t=>t.classList.remove('active'));
   document.getElementById(id).classList.add('active'); el.classList.add('active'); window.scrollTo(0,0);
+  setTimeout(()=>{try{Object.values(charts).forEach(c=>c&&c.resize&&c.resize());}catch(e){}},30);
 }
 function labelRange(){
   const s=state.from, t=state.to;
@@ -422,7 +513,7 @@ function labelRange(){
   document.querySelectorAll('.dateauto').forEach(e=>e.textContent=txt);
   const cf=document.getElementById('cFrom'),ct=document.getElementById('cTo'); if(cf)cf.value=iso(s); if(ct)ct.value=iso(t);
 }
-function setRange(from,to){state.from=from;state.to=to;labelRange();loadData();}
+function setRange(from,to){state.from=from;state.to=to;labelRange();loadData();loadEmail();}
 function preset(r,el){
   document.querySelectorAll('.tb-pill').forEach(p=>p.classList.remove('active')); if(el)el.classList.add('active');
   const now=new Date(),y=addDays(now,-1);
@@ -463,8 +554,133 @@ async function exportPDF(){
     if(btn){btn.textContent=t0;btn.disabled=false;}
   }
 }
+/* ===== Email Marketing ===== */
+let _emRows=[],_emSeries='envios',_emUnit='#';
+function pctN(v,n){return (v||0).toFixed(n).replace('.',',')+'%';}
+function fmtWkS(s){if(!s)return '-';const d=new Date(s+'T00:00:00');return d.getDate()+' '+MES[d.getMonth()];}
+function emAgg(rows){
+  const S=k=>sum(rows,x=>x[k]);
+  const sent=S('sent'),deliv=S('delivered'),op=S('opened'),opT=S('opened_total'),cl=S('clicked'),clT=S('clicked_total'),bo=S('bounced'),un=S('unsubscribed');
+  return {sent,deliv,op,opT,cl,clT,bo,un,
+    dr:sent?deliv/sent*100:0, or:deliv?op/deliv*100:0, cr:deliv?cl/deliv*100:0,
+    ctor:op?cl/op*100:0, br:sent?bo/sent*100:0, ur:deliv?un/deliv*100:0};
+}
+function emBadge(c,pv,lower){
+  if(!pv||!isFinite(pv))return '<span class="em-badge na">—</span>';
+  const d=(c-pv)/pv*100,up=d>=0,good=lower?!up:up;
+  return '<span class="em-badge '+(good?'up':'down')+'">'+(up?'▲':'▼')+' '+Math.abs(d).toFixed(0)+'%</span>';
+}
+async function loadEmail(){
+  const S_cur=iso(state.from),E_cur=iso(state.to);
+  const {pFrom,pTo}=periods();const S_prev=iso(pFrom),E_prev=iso(pTo);
+  try{
+    const rows=await sb('regina_email_marketing','date,sent,delivered,opened,opened_total,clicked,clicked_total,bounced,unsubscribed,delivered_rate,open_rate,click_rate,click_to_open_rate,bounce_rate,unsubscribe_rate',S_prev,E_cur);
+    const cur=rows.filter(r=>between(r.date,S_cur,E_cur));
+    const prev=rows.filter(r=>between(r.date,S_prev,E_prev));
+    renderEmail(cur,prev);
+  }catch(e){console.error('email',e);const t=document.getElementById('em-tbody');if(t)t.innerHTML='<tr><td colspan="8">Error: '+e.message+'</td></tr>';}
+}
+function renderEmail(cur,prev){
+  _emRows=cur.slice().sort((a,b)=>a.date<b.date?-1:1);
+  const a=emAgg(cur),p=emAgg(prev);
+  setTxt('stat-email',pctN(a.or,0));
+  setTxt('em-envios',fmtInt(a.sent)); setHTML('em-envios-b',emBadge(a.sent,p.sent,false)); setTxt('em-envios-sub',pctN(a.dr,1)+' de los emails enviados fueron entregados con éxito.');
+  setTxt('em-aper',pctN(a.or,1)); setHTML('em-aper-b',emBadge(a.or,p.or,false)); setTxt('em-aper-sub',fmtInt(a.op)+' aperturas únicas sobre '+fmtInt(a.deliv)+' entregados.');
+  setTxt('em-clicks',pctN(a.cr,1)); setHTML('em-clicks-b',emBadge(a.cr,p.cr,false)); setTxt('em-clicks-sub',fmtInt(a.cl)+' clics únicos · '+pctN(a.ctor,1)+' de quienes abrieron (CTOR).');
+  setTxt('em-ctor',pctN(a.ctor,1)); setHTML('em-ctor-b',emBadge(a.ctor,p.ctor,false)); setTxt('em-ctor-sub','Clics únicos sobre aperturas únicas.');
+  setTxt('em-reb',pctN(a.br,2)); setHTML('em-reb-b',emBadge(a.br,p.br,true)); setTxt('em-reb-sub',fmtInt(a.bo)+' emails rechazados por el servidor.');
+  setTxt('em-des',pctN(a.ur,2)); setHTML('em-des-b',emBadge(a.ur,p.ur,true)); setTxt('em-des-sub',fmtInt(a.un)+' destinatarios se desuscribieron.');
+  const tb=document.getElementById('em-tbody');
+  if(tb){
+    if(!_emRows.length){tb.innerHTML='<tr><td colspan="8">Sin envíos en el período.</td></tr>';}
+    else{tb.innerHTML=_emRows.map(r=>'<tr><td>'+fmtWkS(r.date)+'</td><td>'+fmtInt(r.sent)+'</td><td>'+fmtInt(r.delivered)+'</td><td>'+pctN(+r.open_rate,1)+'</td><td>'+pctN(+r.click_rate,1)+'</td><td>'+pctN(+r.click_to_open_rate,1)+'</td><td>'+pctN(+r.bounce_rate,2)+'</td><td>'+fmtInt(r.unsubscribed)+'</td></tr>').join('');}
+  }
+  const tf=document.getElementById('em-tfoot');
+  if(tf){tf.innerHTML=_emRows.length?('<tr><td>Total / prom.</td><td>'+fmtInt(a.sent)+'</td><td>'+fmtInt(a.deliv)+'</td><td>'+pctN(a.or,1)+'</td><td>'+pctN(a.cr,1)+'</td><td>'+pctN(a.ctor,1)+'</td><td>'+pctN(a.br,2)+'</td><td>'+fmtInt(a.un)+'</td></tr>'):'';}
+  emChart();
+}
+function emChart(){
+  const el=document.getElementById('cEmail');if(!el)return;
+  const rows=_emRows,U=_emUnit,Sx=_emSeries;
+  const lab=rows.map(r=>fmtWkS(r.date));
+  let data,label,color=ORANGE;
+  if(Sx==='envios'){data=rows.map(r=>U==='#'?(+r.sent||0):(+r.delivered_rate||0));label=U==='#'?'Enviados':'Tasa de entrega %';}
+  else if(Sx==='aperturas'){data=rows.map(r=>U==='#'?(+r.opened||0):(+r.open_rate||0));label=U==='#'?'Aperturas únicas':'Open rate %';color='#ffa15c';}
+  else{data=rows.map(r=>U==='#'?(+r.clicked||0):(+r.click_rate||0));label=U==='#'?'Clics únicos':'Click rate %';color=BLUE;}
+  if(charts.cEmail)charts.cEmail.destroy();
+  charts.cEmail=new Chart(el,{type:'bar',data:{labels:lab,datasets:[{label,data,backgroundColor:color+'cc',borderColor:color,borderWidth:1,borderRadius:6,maxBarThickness:64}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},datalabels:{display:false},tooltip:{callbacks:{label:c=>label+': '+(U==='%'?pctN(c.parsed.y,2):fmtInt(c.parsed.y))}}},scales:{x:{grid:{display:false}},y:{grid:{color:GRID},beginAtZero:true}}}});
+}
+function emSetSeries(s,el){_emSeries=s;document.querySelectorAll('.em-tg-s').forEach(b=>b.classList.remove('active'));el.classList.add('active');emChart();}
+function emSetUnit(u,el){_emUnit=u;document.querySelectorAll('.em-tg-u').forEach(b=>b.classList.remove('active'));el.classList.add('active');emChart();}
+/* ===== Objetivos del mes ===== */
+async function loadObjetivos(){
+  const box=document.getElementById('goals');if(!box)return;
+  try{
+    const now=new Date();const mStart=new Date(now.getFullYear(),now.getMonth(),1);
+    const yest=addDays(now,-1);const to=(yest<mStart)?mStart:yest;
+    const mm=String(now.getMonth()+1).padStart(2,'0')+'-'+now.getFullYear();
+    const diasMes=new Date(now.getFullYear(),now.getMonth()+1,0).getDate();
+    const diaHoy=Math.min(now.getDate(),diasMes);const idealPct=diaHoy/diasMes*100;
+    const S=iso(mStart),E=iso(to);
+    const headers={apikey:SUPABASE_ANON_KEY,Authorization:'Bearer '+SUPABASE_ANON_KEY};
+    const objUrl=SUPABASE_URL+"/rest/v1/objetivos?select=*&cliente=eq.regina&fecha=eq."+encodeURIComponent(mm);
+    const [meta,google,orders,objR]=await Promise.all([
+      sb('regina_meta_ads','date,amount_spent',S,E),
+      sb('regina_google_ads','date,cost',S,E),
+      sb('regina_tiendanube_orders','date,order_payment_status,order_total_paid',S,E),
+      fetch(objUrl,{headers}).then(r=>r.ok?r.json():[])
+    ]);
+    const obj=(objR&&objR[0])||null;
+    if(!obj){box.innerHTML='<div class="ke-pg-sub">Sin objetivos cargados para '+mm+'. Completá la hoja de objetivos.</div>';setTxt('goal-mes','');return;}
+    const realMeta=sum(meta,x=>x.amount_spent),realGoogle=sum(google,x=>x.cost);
+    const paid=orders.filter(o=>(o.order_payment_status||'').toLowerCase()==='paid');
+    const realFact=sum(paid,o=>o.order_total_paid),realOrd=paid.length;
+    setTxt('goal-mes','Mes en curso · día '+diaHoy+'/'+diasMes+' · ritmo ideal '+idealPct.toFixed(0)+'%');
+    const bar=(name,real,objv,kind)=>{
+      const o=+objv||0,pc=o?real/o*100:0;
+      const revLike=(kind==='rev'||kind==='ord');
+      const cls=revLike?(pc>=idealPct?'g':'o'):'b';
+      const fillW=Math.min(100,Math.max(0,pc)),idealL=Math.min(100,idealPct);
+      const realTxt=(kind==='ord')?fmtInt(real):moneyKpi(real);
+      const objTxt=(kind==='ord')?fmtInt(o):moneyKpi(o);
+      return '<div class="ke-goal"><div class="ke-goal-top"><span class="ke-goal-name">'+name+'</span><span class="ke-goal-pct '+cls+'">'+pc.toFixed(0)+'%</span></div><div class="ke-goal-bar"><div class="ke-goal-fill '+cls+'" style="width:'+fillW+'%"></div><div class="ke-goal-ideal" style="left:'+idealL+'%"></div></div><div class="ke-goal-sub">'+realTxt+' de '+objTxt+' · ideal hoy '+idealPct.toFixed(0)+'%</div></div>';
+    };
+    let html=bar('Inversión Meta',realMeta,obj.inversion_meta,'inv')+bar('Inversión Google',realGoogle,obj.inversion_google,'inv')+bar('Facturación',realFact,obj.facturacion,'rev');
+    if(obj.ordenes!=null)html+=bar('Órdenes',realOrd,obj.ordenes,'ord');
+    box.innerHTML=html;
+  }catch(e){console.error(e);box.innerHTML='<div class="ke-pg-sub">Error cargando objetivos: '+e.message+'</div>';}
+}
+/* ===== Conclusiones & accionables ===== */
+async function loadInsights(area,elId){
+  const el=document.getElementById(elId);if(!el)return;
+  try{
+    const headers={apikey:SUPABASE_ANON_KEY,Authorization:'Bearer '+SUPABASE_ANON_KEY};
+    const url=SUPABASE_URL+'/rest/v1/regina_insights?select=notion_id,semana,area,responsable,estatus,accionable,impacto_esperado,resumen&area=eq.'+encodeURIComponent(area)+'&order=semana.desc';
+    const r=await fetch(url,{headers});if(!r.ok)throw new Error('insights '+r.status);
+    const raw=await r.json();
+    const seen={},rows=[];
+    raw.forEach(x=>{const id=x.notion_id||((x.semana||'-')+'|'+(x.estatus||''));if(seen[id])return;seen[id]=1;rows.push(x);});
+    if(!rows.length){el.innerHTML='<div class="ke-pg-sub">Sin conclusiones cargadas todavía.</div>';return;}
+    const bySem={},order=[];
+    rows.forEach(x=>{const k=x.semana||'-';if(!(k in bySem)){bySem[k]=[];order.push(k);}bySem[k].push(x);});
+    const weeks=order.slice(0,2).reverse();
+    const fmtWk=(s)=>{if(!s||s==='-')return '-';const d=new Date(s+'T00:00:00');return d.getDate()+' '+MES[d.getMonth()]+' '+d.getFullYear();};
+    const esc=(v)=>String(v).replace(/</g,'&lt;');
+    const cell=(l,v)=>v?('<div class="ke-ins-field"><div class="l">'+l+'</div><div class="v">'+esc(v)+'</div></div>'):'';
+    el.innerHTML=weeks.map((wk,i)=>{
+      const isCur=i===weeks.length-1;
+      const body=bySem[wk].map(it=>cell('Estatus',it.estatus)+cell('Accionable',it.accionable)+cell('Impacto esperado',it.impacto_esperado)+(it.responsable?'<div class="ke-ins-resp">Responsable: '+esc(it.responsable)+'</div>':'')).join('<hr style="border:none;border-top:1px solid var(--ke-border);margin:14px 0">');
+      return '<div class="ke-ins-card'+(isCur?' cur':'')+'"><div class="ke-ins-wk">'+(isCur?'<b>Esta semana</b>':'Semana pasada')+' · '+fmtWk(wk)+'</div>'+body+'</div>';
+    }).join('');
+  }catch(e){console.error(e);el.innerHTML='<div class="ke-pg-sub">Error cargando conclusiones: '+e.message+'</div>';}
+}
+
 labelRange();
 loadData();
+loadEmail();
+loadObjetivos();
+loadInsights('Paid Media','insights-pm');
+loadInsights('Email Marketing','insights-em');
 let _mob=isMobile();
 window.addEventListener('resize',()=>{const m=isMobile();if(m!==_mob){_mob=m;if(_last)render(_last.c,_last.p,_last.D);}});
 
