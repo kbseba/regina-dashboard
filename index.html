@@ -207,6 +207,7 @@ table.ke-t tfoot td:first-child{text-align:left;}
   </div>
     <div class="ke-nav-tab active" onclick="goTo('p1',this)">Paid Media</div>
   <div class="ke-nav-tab" onclick="goTo('p2',this)">Email Marketing</div>
+  <div class="ke-nav-tab" onclick="goTo('p3',this)">Social Media</div>
   <div class="ke-nav-date">Período <b id="navPeriod">01 — 18 jun 2026</b></div>
 </nav>
 
@@ -339,6 +340,68 @@ table.ke-t tfoot td:first-child{text-align:left;}
   <div class="ke-sec-head"><div class="ke-sec-line"></div><span class="ke-sec-label">Conclusiones &amp; accionables · Email Marketing</span></div>
   <div id="insights-em" class="ke-ins-wrap"><div class="ke-pg-sub">Cargando…</div></div>
 </section>
+
+<section id="p3" class="ke-page">
+  <div class="ke-pg-header">
+    <div>
+      <div class="ke-eyebrow">Instagram · Orgánico</div>
+      <div class="ke-pg-title">SOCIAL<br><span>MEDIA</span></div>
+      <div class="ke-pg-sub">@regina_cosmetics · métricas de cuenta (snapshot / lifetime). No varían con el filtro de período.</div>
+    </div>
+    <div class="ke-pg-stat">
+      <div class="ke-pg-stat-val" id="ig-stat-foll">—</div>
+      <div class="ke-pg-stat-lbl">Seguidores</div>
+    </div>
+  </div>
+
+  <div class="ke-pg-sub" id="ig-err" style="color:var(--ke-bad);margin:-16px 0 20px"></div>
+
+  <!-- Bloque 1 — KPIs -->
+  <div class="ke-sec-head"><div class="ke-sec-line"></div><span class="ke-sec-label">KPIs de cuenta</span><span class="ke-sec-pill ke-pill-orange">Snapshot</span></div>
+  <div class="ig-kpis">
+    <div class="ke-kc"><div class="ke-kl">Seguidores</div><div class="ke-kv" id="ig-followers">—</div><div class="ke-ks">Total de la cuenta</div></div>
+    <div class="ke-kc b"><div class="ke-kl">Alcance</div><div class="ke-kv b" id="ig-reach">—</div><div class="ke-ks">Cuentas alcanzadas</div></div>
+    <div class="ke-kc b"><div class="ke-kl">Reproducciones</div><div class="ke-kv b" id="ig-views">—</div><div class="ke-ks">Views de contenido</div></div>
+    <div class="ke-kc g"><div class="ke-kl">Interacciones</div><div class="ke-kv g" id="ig-inter">—</div><div class="ke-ks">Likes + coment. + guardados + comp.</div></div>
+    <div class="ke-kc p"><div class="ke-kl">Visitas al perfil</div><div class="ke-kv p" id="ig-profile">—</div><div class="ke-ks">Visitas al perfil</div></div>
+    <div class="ke-kc o"><div class="ke-kl">Clics en sitio web</div><div class="ke-kv o" id="ig-web">—</div><div class="ke-ks">Clics al sitio</div></div>
+  </div>
+
+  <!-- Bloque 4 — Audiencia -->
+  <div class="ke-sec-head"><div class="ke-sec-line p"></div><span class="ke-sec-label">Audiencia · seguidores</span></div>
+  <div class="ke-grid-2">
+    <div class="ke-block">
+      <div class="ke-block-top"></div>
+      <div class="ke-bh"><span class="ke-bt">Seguidores por rango etario</span></div>
+      <div style="padding:16px;height:280px"><canvas id="ig-cAge"></canvas></div>
+    </div>
+    <div class="ke-block">
+      <div class="ke-block-top"></div>
+      <div class="ke-bh"><span class="ke-bt">Seguidores por género</span></div>
+      <div style="display:flex;align-items:center;gap:10px;padding:16px;height:280px">
+        <div style="flex:1;min-width:0;height:100%;position:relative"><canvas id="ig-cGender"></canvas></div>
+        <div id="ig-genderLegend" style="flex-shrink:0;min-width:130px"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bloque 3 — Contenido publicado -->
+  <div class="ke-sec-head"><div class="ke-sec-line o"></div><span class="ke-sec-label">Contenido publicado</span><span class="ke-sec-pill ke-pill-orange" id="ig-stat-posts">0</span></div>
+  <div class="ke-block">
+    <div class="ke-block-top"></div>
+    <div style="overflow-x:auto">
+      <table class="ke-t ig-t">
+        <thead><tr>
+          <th>Preview</th><th>Fecha</th><th>Tipo</th><th>Descripción</th>
+          <th class="acc">Alcance</th><th class="acc">Reprod.</th><th class="acc">Interac.</th>
+          <th>Me gusta</th><th>Coment.</th><th>Guardados</th><th>Compart.</th><th>Nuevos seg.</th>
+        </tr></thead>
+        <tbody id="ig-tbody"><tr><td colspan="12" class="ke-pg-sub">Cargando…</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
 
 </div>
 
@@ -685,5 +748,106 @@ let _mob=isMobile();
 window.addEventListener('resize',()=>{const m=isMobile();if(m!==_mob){_mob=m;if(_last)render(_last.c,_last.p,_last.D);}});
 
 </script>
+<style>
+.ig-kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:12px;}
+@media(max-width:900px){.ig-kpis{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:560px){.ig-kpis{grid-template-columns:repeat(2,1fr);}}
+.ig-t td,.ig-t th{white-space:nowrap;}
+.ig-t .ig-cap{white-space:normal;max-width:240px;color:var(--ke-muted);font-size:12px;}
+.ig-thumb{width:44px;height:44px;border-radius:8px;object-fit:cover;display:block;background:var(--ke-header);border:1px solid var(--ke-border);}
+.ig-legend-row{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--ke-text);margin-bottom:10px;}
+.ig-legend-row .dot{width:10px;height:10px;border-radius:3px;flex-shrink:0;}
+.ig-legend-row .pct{margin-left:auto;color:var(--ke-muted);font-family:'Bitroad',monospace;}
+</style>
+<script>
+(function(){
+  const IG_URL="https://yixbnmwdzexjygmtszii.supabase.co";
+  const IG_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlpeGJubXdkemV4anlnbXRzemlpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE5NzE5NjMsImV4cCI6MjA5NzU0Nzk2M30.W6ID6GDrY3kvDwNzjfPCcnkIsmFbcFm_YwhuraGAEo4";
+  const IG_PAL=['#ff700a','#4fa3ff','#c084fc','#4dcc80','#ffd88a','#ff6eb4','#9aa0a6'];
+  const IG_GRID='rgba(230,230,230,.07)', IG_MUT='rgba(230,230,230,.5)';
+  const igCharts={};
+  const igNF=new Intl.NumberFormat('es-AR');
+  const igInt=v=>igNF.format(Math.round(v||0));
+  const igSet=(id,v)=>{const e=document.getElementById(id); if(e)e.textContent=v;};
+  const igEsc=v=>String(v==null?'':v).replace(/[<>]/g,c=>c==='<'?'&lt;':'&gt;');
+
+  async function igGet(table,cols){
+    const headers={apikey:IG_KEY,Authorization:'Bearer '+IG_KEY};
+    const r=await fetch(IG_URL+'/rest/v1/'+table+'?select='+cols+'&limit=1000',{headers});
+    if(!r.ok) throw new Error(table+' '+r.status);
+    return r.json();
+  }
+  function igBar(id,labels,data){
+    const el=document.getElementById(id); if(!el||!window.Chart)return; if(igCharts[id])igCharts[id].destroy();
+    igCharts[id]=new Chart(el,{type:'bar',data:{labels,datasets:[{data,backgroundColor:'#ff700a',borderRadius:4,maxBarThickness:46}]},
+      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},datalabels:{display:false},
+        tooltip:{callbacks:{label:c=>igInt(c.parsed.y)+' seguidores'}}},
+        scales:{x:{grid:{display:false},ticks:{color:IG_MUT,font:{size:11}}},
+          y:{grid:{color:IG_GRID},beginAtZero:true,ticks:{color:IG_MUT,font:{size:10},callback:v=>v>=1000?(v/1000)+'k':v}}}}});
+  }
+  function igDonut(id,labels,data){
+    const el=document.getElementById(id); if(!el||!window.Chart)return; if(igCharts[id])igCharts[id].destroy();
+    const colors=labels.map((_,i)=>IG_PAL[i%IG_PAL.length]);
+    igCharts[id]=new Chart(el,{type:'doughnut',data:{labels,datasets:[{data,backgroundColor:colors,borderWidth:0}]},
+      options:{responsive:true,maintainAspectRatio:false,cutout:'60%',plugins:{legend:{display:false},
+        datalabels:window.ChartDataLabels?{display:c=>c.datasetIndex===0,color:'#191919',font:{size:10,weight:700},
+          formatter:(v,c)=>{const t=c.dataset.data.reduce((s,x)=>s+x,0);const p=t?v/t*100:0;return p>=6?Math.round(p)+'%':'';}}:{display:false}}}});
+  }
+  async function igLoad(){
+    try{
+      const [life,daily,posts,demo]=await Promise.all([
+        igGet('regina_ig_account_lifetime','followers,media_count,follows'),
+        igGet('regina_ig_account_daily','account_reach,account_views,account_total_interactions,account_profile_views,account_website_clicks'),
+        igGet('regina_ig_posts_media','thumbnail_url,permalink,date_published,media_product_type,caption,reach,views,total_interactions,likes,comments,saved,shares,follows_from_post'),
+        igGet('regina_ig_demographics','age,gender,follower_demographics_count')
+      ]);
+      const L=life[0]||{}, D=daily[0]||{};
+      igSet('ig-followers',igInt(L.followers)); igSet('ig-stat-foll',igInt(L.followers));
+      igSet('ig-reach',igInt(D.account_reach)); igSet('ig-views',igInt(D.account_views));
+      igSet('ig-inter',igInt(D.account_total_interactions));
+      igSet('ig-profile',igInt(D.account_profile_views)); igSet('ig-web',igInt(D.account_website_clicks));
+
+      const MES=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+      const fdate=s=>{if(!s)return '—';const d=new Date(s);return isNaN(d)?'—':(d.getDate()+' '+MES[d.getMonth()]);};
+      const tipo={AD:'Ad',FEED:'Feed',REELS:'Reel',STORY:'Story',CAROUSEL_ALBUM:'Carrusel',VIDEO:'Video',IMAGE:'Imagen'};
+      posts.sort((a,b)=>new Date(b.date_published||0)-new Date(a.date_published||0));
+      const rowsHTML=posts.map(p=>{
+        const th=p.thumbnail_url
+          ?'<img class="ig-thumb" src="'+igEsc(p.thumbnail_url)+'" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.visibility=&#39;hidden&#39;">'
+          :'<div class="ig-thumb"></div>';
+        const prev=p.permalink?('<a href="'+igEsc(p.permalink)+'" target="_blank" rel="noopener">'+th+'</a>'):th;
+        const cap=igEsc((p.caption||'').replace(/\s+/g,' ').trim().slice(0,90));
+        return '<tr><td>'+prev+'</td><td>'+fdate(p.date_published)+'</td>'
+          +'<td><span class="ke-chip ke-c-neutral">'+igEsc(tipo[p.media_product_type]||p.media_product_type||'—')+'</span></td>'
+          +'<td class="ig-cap">'+cap+'</td>'
+          +'<td>'+igInt(p.reach)+'</td><td>'+igInt(p.views)+'</td><td>'+igInt(p.total_interactions)+'</td>'
+          +'<td>'+igInt(p.likes)+'</td><td>'+igInt(p.comments)+'</td><td>'+igInt(p.saved)+'</td>'
+          +'<td>'+igInt(p.shares)+'</td><td>'+igInt(p.follows_from_post)+'</td></tr>';
+      }).join('');
+      document.getElementById('ig-tbody').innerHTML=rowsHTML||'<tr><td colspan="12" class="ke-pg-sub">Sin publicaciones en el período.</td></tr>';
+      igSet('ig-stat-posts',igInt(posts.length)+' posts');
+
+      const ages=['13-17','18-24','25-34','35-44','45-54','55-64','65+'];
+      const byAge=ages.map(a=>demo.filter(d=>d.age===a).reduce((s,d)=>s+(+d.follower_demographics_count||0),0));
+      igBar('ig-cAge',ages,byAge);
+
+      const gmap={F:'Femenino',M:'Masculino',U:'Sin especificar'};
+      const gk=['F','M','U'];
+      const byG=gk.map(g=>demo.filter(d=>d.gender===g).reduce((s,d)=>s+(+d.follower_demographics_count||0),0));
+      const gtot=byG.reduce((s,x)=>s+x,0)||1;
+      igDonut('ig-cGender',gk.map(g=>gmap[g]),byG);
+      document.getElementById('ig-genderLegend').innerHTML=gk.map((g,i)=>
+        '<div class="ig-legend-row"><span class="dot" style="background:'+IG_PAL[i%IG_PAL.length]+'"></span>'+gmap[g]
+        +'<span class="pct">'+(byG[i]/gtot*100).toFixed(1).replace('.',',')+'%</span></div>').join('');
+    }catch(e){
+      console.error(e);
+      const el=document.getElementById('ig-err'); if(el)el.textContent='⚠️ Error cargando Social Media: '+e.message;
+    }
+  }
+  if(document.readyState!=='loading') igLoad();
+  else document.addEventListener('DOMContentLoaded',igLoad);
+})();
+</script>
+
 </body>
 </html>
